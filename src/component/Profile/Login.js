@@ -18,7 +18,7 @@ export default function Login({ toggleLoginModal }) {
     const loginData = { email, password };
 
     try {
-      const response = await fetch("http://localhost/Eatopia/Login.php", {
+      const response = await fetch("http://localhost/Eatopia-Service/Login.php", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
