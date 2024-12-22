@@ -14,6 +14,20 @@ export default function ProfileDropdown({ toggleLoginModal }) {
     }
   };
 
+  const handleLogout = () => {
+    alert("Successfully logged out !!! ");
+    setIsDropdownOpen(false);  // Close dropdown on logout
+  };
+
+  const handleLoginClick = () => {
+    toggleLoginModal(); // Trigger login modal
+    setIsDropdownOpen(false); // Close dropdown after login click
+  };
+
+  const handleProfileClick = () => {
+    setIsDropdownOpen(false); // Close dropdown after profile click
+  };
+
   React.useEffect(() => {
     if (isDropdownOpen) {
       document.addEventListener("click", handleOutsideClick);
@@ -33,18 +47,18 @@ export default function ProfileDropdown({ toggleLoginModal }) {
           className="dropdown-menu show position-absolute"
           style={{ top: "100%", right: "0", zIndex: "1000" }}
         >
-          <a className="dropdown-item" role="button" onClick={toggleLoginModal}>
+          <a className="dropdown-item" role="button" onClick={handleLoginClick}>
             Login&nbsp;
-            <i class="bi bi-box-arrow-in-left"></i>
+            <i className="bi bi-box-arrow-in-left"></i>
           </a>
-          <Link className="dropdown-item" to="/profile">
-            Profile&nbsp;<i class="bi bi-people"></i>
+          <Link className="dropdown-item" to="/profile" onClick={handleProfileClick}>
+            Profile&nbsp;<i className="bi bi-people"></i>
           </Link>
           <Link className="dropdown-item" to="/settings">
-            Settings&nbsp;<i class="bi bi-gear-wide-connected"></i>
+            Settings&nbsp;<i className="bi bi-gear-wide-connected"></i>
           </Link>
-          <Link className="dropdown-item" to="/logout">
-            Logout&nbsp;<i class="bi bi-box-arrow-right"></i>
+          <Link className="dropdown-item" to="/logout" onClick={handleLogout}>
+            Logout&nbsp;<i className="bi bi-box-arrow-right"></i>
           </Link>
         </div>
       )}
