@@ -26,7 +26,7 @@ export default function Header() {
   return (
     <div>
 
-<nav className="navbar navbar-expand-lg bg-body-tertiary">
+<nav className="navbar navbar-expand-lg bg-body-tertiarys">
   <div className="container-fluid">
   <img src={logo} alt="Logo" width="30" height="24" className="d-inline-block align-text-top "/>
     <a className="navbar-brand mx-2" >Eatopia</a>

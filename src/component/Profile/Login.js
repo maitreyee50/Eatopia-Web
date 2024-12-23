@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import './Loginstyle.css'
 
 
 export default function Login({ toggleLoginModal }) {
@@ -6,6 +8,9 @@ export default function Login({ toggleLoginModal }) {
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+
+  const navigate = useNavigate();
+
 
   // Handle form submission
   const handleSubmit = async (e) => {
@@ -27,13 +32,15 @@ export default function Login({ toggleLoginModal }) {
       });
 
       const data = await response.json();
-
+      console.log(data);
       if (data.success) {
-        // Handle success (e.g., redirect or show success message)
+        
+        localStorage.setItem("username", data.username);  
         alert("Login successful!");
-        toggleLoginModal(); // Close the modal after successful login
+        toggleLoginModal(); 
+        navigate("/home"); 
       } else {
-        // Handle error (e.g., show error message)
+        
         setErrorMessage(data.message);
       }
     } catch (error) {
@@ -50,7 +57,9 @@ export default function Login({ toggleLoginModal }) {
         <div className="modal-content">
           <div className="modal-header">
             <h5 className="modal-title">Login</h5>
-            <button type="button" className="btn-close" onClick={toggleLoginModal}></button>
+            <button type="button" className="btn-close" onClick={toggleLoginModal}>
+              
+            </button>
           </div>
           <div className="modal-body">
             <form onSubmit={handleSubmit}>
